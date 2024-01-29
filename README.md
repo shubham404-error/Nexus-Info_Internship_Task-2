@@ -50,4 +50,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## License
 
-This project is licensed under the GNU License.
+This project is licensed under the GPL 3.0 License.
