@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admission Chatbot</title>
+    <style>
+         header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #f5f5f5;
+            color: #888;
+            padding: 10px;
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        #chatbox {
+            width: 90%;
+            height: 400px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #fff;
+            overflow: auto;
+            border-radius: 8px;
+        }
+        #userInput {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 0 20px 20px 20px;
+        }
+        #submit {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #submit:hover {
+            background-color: #0056b3;
+        }
+        .userMessage {
+            color: #007BFF;
+            font-weight: bold;
+        }
+        .botMessage {
+            color: #888;
+        }
+        .userAvatar {
+            float: left;
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .botAvatar {
+            float: left;
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#submit").click(function(){
+                var userText = $("#userInput").val();
+                $("#chatbox").append("<div class='userMessage'><img src='https://raw.githubusercontent.com/shubham404-error/AIML-Project-Series/main/proj%202/man.png' class='userAvatar'>You: " + userText + "</div>");
+                $.post("/ask", {question: userText}, function(data){
+                    $("#chatbox").append("<div class='botMessage'><img src='https://raw.githubusercontent.com/shubham404-error/AIML-Project-Series/main/proj%202/logo.png' class='botAvatar'>Bot: " + data + "</div>");
+                    $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+                });
+                $("#userInput").val('');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        Admission Chatbot
+    </header>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput">
+    <button id="submit">Send</button>
+    <footer>
+        <p>Made By Shubham Tejani</p>
+    </footer>
+</body>
+</html>
